@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html ng-app="SampleApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="../../scripts/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+</head>
+<body>
+    <script>
+        var sampleApp = angular.module('SampleApp', ['ngRoute']);
+       
+        sampleApp.config(['$routeProvider',
+            function ($routeProvider) {
+                $routeProvider.
+                    when('/Angular', {
+                        templateUrl: 'Angular.html',
+                        controller:'AngularController'
+                    }).
+                when('/Node', {
+                    templateUrl: 'Node.html',
+                    controller:'NodeController'
+                }).
+                when('/Html', {
+                    templateUrl: 'Html.html',
+                    controller:'HtmlController'
+                }).
+                otherwise({
+                    redirectTo:'/Angular'
+                });
+            }
+        ]);
+        sampleApp.controller('AngularController', function ($scope) {
+            $scope.tutorial = [
+            { Name: "Controllers", Description: "Controllers in action" },
+            { Name: "Models", Description: "Models and binding data" },
+            {Name:"Directives", Description:"Flexibility of Directives"}]
+        });
+        sampleApp.controller('NodeController', function ($scope) {
+            $scope.tutorial = [
+                { Name: "Promises", Description: "Power of Promises" },
+                { Name: "Events", Description: "Events in NodeJs" },
+                {Name:"Modules",Description:"Modules in NodeJs"}
+                ]
+            });
+        sampleApp.controller('RubiController' ,function($scope){
+            $scope.tutorial =[
+            {Name: "Rubi" ,Description: "Frontend Development"},
+            { Name: "Events", Description: "Events in Rubi" }
+            
+            ]
+        });
+        sampleApp.controller('HtmlController', function($scope){
+            $scope.tutorial  =[
+                {Name: "Tags", Description:"For holding the Content"},
+                {Name: "Elements", Description:"For holding the content"}
+            ]
+        });
+    </script>
+    <h2>Angular Routing Deno</h2>
+    <ul>
+        <li><a href="#Angular">Angular js</a></li>
+        <li><a href="#Node">Node Js</a></li>
+        <li><a href="#Rubi">Rubi On Rails</a></li>
+        <li><a href="#Html">HTML</a></li>
+    </ul>
+    <div ng-view></div>
+</body>
+</html>
